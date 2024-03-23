@@ -10,7 +10,7 @@ namespace Report.Infrastructure
 
         public DbSet<Record> Records => Set<Record>();
 
-        public DataContext()
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
             Database.EnsureCreated();
         }

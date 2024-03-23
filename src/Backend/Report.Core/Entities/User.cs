@@ -6,6 +6,8 @@ namespace Report.Core.Entities
         
         public string PasswordHash { get; set; }
 
+        public string? RefreshToken { get; set; }
+        
         public ICollection<Record> Records { get; set; }
     }
 }
