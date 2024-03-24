@@ -9,5 +9,7 @@ namespace Report.Core.Interfaces.Repositories
         Task<User> GetUserByLoginAsync(string login);
 
         Task<User> UpdateAsync(User user);
+
+        Task<User> GetUserByTokenAsync(string refreshToken);
     }
 }

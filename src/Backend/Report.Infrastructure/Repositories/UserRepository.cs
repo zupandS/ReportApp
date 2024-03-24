@@ -37,5 +37,12 @@ namespace Report.Infrastructure.Repositories
 
             return user;
         }
+
+        public async Task<User> GetUserByTokenAsync(string refreshToken)
+        {
+            var user = await _dataContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+
+            return user;
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Report.Infrastructure.DependencyInjection
         private static void AddRepository(this IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRecordRepository, RecordRepository>();
         }
     }
 }

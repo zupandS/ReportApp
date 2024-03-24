@@ -7,5 +7,9 @@ namespace Report.Application.Interfaces
         string GenerateRefreshToken();
 
         string GenerateAccessToken(IEnumerable<Claim> claims);
+
+        IEnumerable<Claim> GetClaims(string accessToken);
+
+        bool IsValidToken(string accessToken);
     }
 }

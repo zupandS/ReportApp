@@ -35,5 +35,28 @@ namespace Report.Application.Services
             randomNumberGenerator.GetBytes(randomNumbers);
             return Convert.ToBase64String(randomNumbers);
         }
+
+        public IEnumerable<Claim> GetClaims(string accessToken)
+        {
+            var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(accessToken);
+
+            if (jwtToken == null)
+                throw new ArgumentNullException("Невалидный токен");
+
+            return jwtToken.Claims;
+        }
+
+        public bool IsValidToken(string accessToken)
+        {
+            var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(accessToken);
+
+            if (jwtToken == null)
+                throw new ArgumentNullException("Невалидный токен");
+
+            if (jwtToken.ValidTo < DateTime.UtcNow)
+                return false;
+
+            return true;
+        }
     }
 }

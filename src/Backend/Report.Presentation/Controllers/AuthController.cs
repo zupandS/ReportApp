@@ -1,6 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Report.Application.Commands.AuthCommands.RefreshCommand;
 using Report.Contracts;
+using Report.Contracts.Requests;
+using Report.Contracts.Responses;
 
 namespace Report.Presentation.Controllers
 {
@@ -16,9 +19,16 @@ namespace Report.Presentation.Controllers
         }
 
         [HttpPost("/refresh")]
-        public async Task<ApiResult<>> CreateAccount(CreateAccountRequest request)
+        public async Task<ApiResult<RefreshResponse>> Refresh(RefreshRequest request)
         {
-            
+            var command = new RefreshCommand
+            {
+                RefreshModel = request
+            };
+
+            var result = await _mediator.Send(command);
+
+            return ApiResult<RefreshResponse>.Success(result);
         }
     }
 }
